@@ -4,24 +4,49 @@ import iconPerson from '../icon-person.svg';
 import iconDollar from '../icon-dollar.svg';
 
 export default function MainPage () {
+    const [billAmount, setBillAmount] = useState(0); 
+    const [tipPercentage, setTipPercentage] = useState(0); 
+    const [numberOfPeople, setNumberOfPeople] = useState(1); 
 
     const buttons = [
         {
-            value: '5%',
+            value: '5',
         },
         {
-            value: '10%',
+            value: '10',
         },
         {
-            value: '15%',
+            value: '15',
         },
         {
-            value: '20%',
+            value: '20',
         },
         {
-            value: '50%',
+            value: '50',
         },
     ]
+
+    const handleBillAmountChange = (e: any) => {
+        setBillAmount(parseFloat(e.target.value) || 0);
+    };
+
+    const calculateTip = () => {
+        return billAmount * (tipPercentage / 100) * numberOfPeople;
+    };
+      
+    const handleTipPercentageSelect = (percentage: any) => {
+        setTipPercentage(percentage);
+    };
+      
+    const handleNumberOfPeopleChange = (e: any) => {
+        setNumberOfPeople(parseInt(e.target.value) || 1);
+    };
+
+    const handleReset = () => {
+        setBillAmount(0);
+        setTipPercentage(0);
+        setNumberOfPeople(1);
+    };
 
     return (
         <div className="container">
@@ -32,23 +57,41 @@ export default function MainPage () {
                         <h4 className="section-title">Bill</h4>
                         <div className="input-container">
                             <img src={iconDollar} className="dollar-sign" alt="Icon Dollar" />
-                            <input className="input-sum" placeholder="0" />
+                            <input 
+                                className="input-sum" 
+                                placeholder="0" 
+                                value={billAmount}
+                                onChange={handleBillAmountChange}
+                            />
                         </div>
                     </div>
                     <div className="choose-percent">
                         <h4 className="section-title">Select Tip %</h4>
                         <div className="buttons">
                             {buttons.map((button: any) => (
-                                <button>{button.value}</button>
+                                <button
+                                onClick={() => handleTipPercentageSelect(parseInt(button.value))}
+                                >
+                                {button.value}%
+                                </button>
                             ))}
-                            <input className="input-percent" placeholder="Custom" />
+                            <input 
+                                className="input-percent" 
+                                placeholder="Custom" 
+                                onChange={(e) => handleTipPercentageSelect(parseFloat(e.target.value))}
+                            />
                         </div>
                     </div>
                     <div className="number-of-people">
                         <h4 className="section-title">Number of people</h4>
                         <div className="input-container">
                             <img src={iconPerson} className="icon-person" alt="Icon Person" />
-                            <input className="input-sum" placeholder="0" />
+                            <input
+                                className="input-sum"
+                                placeholder="0"
+                                value={numberOfPeople}
+                                onChange={handleNumberOfPeopleChange}
+                            />
                         </div>
                     </div>
                 </div>
@@ -60,7 +103,7 @@ export default function MainPage () {
                                 <p className="for-person-sign">/ person</p>
                             </div>
                             <div className="sum">
-                                <h2>$0.00</h2>
+                                <h2>${calculateTip().toFixed(2)}</h2>
                             </div>
                         </div>
                         <div className="total">
@@ -69,11 +112,11 @@ export default function MainPage () {
                                 <p className="for-person-sign">/ person</p>
                             </div>
                             <div className="sum">
-                                <h2>$0.00</h2>
+                                <h2>${(billAmount + calculateTip()).toFixed(2)}</h2>
                             </div>
                         </div>
                     </div>
-                    <button className="reset-button">Reset</button>
+                    <button className="reset-button" onClick={handleReset}>Reset</button>
                 </div>
             </div>
         </div>
