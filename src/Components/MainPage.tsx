@@ -51,11 +51,13 @@ export default function MainPage () {
 
     return (
         <div className="container">
-            <img src={logo} className="logo-header" alt="Logo" />
-            <div className="content">
+            <header>
+                <img src={logo} className="logo-header" alt="Logo" />
+            </header>
+            <main className="content">
                 <div className="options">
                     <div className="header">
-                        <h4 className="section-title">Bill</h4>
+                        <h2 className="section-title">Bill</h2>
                         <div className="input-container">
                             <img src={iconDollar} className="dollar-sign" alt="Icon Dollar" />
                             <input 
@@ -67,7 +69,7 @@ export default function MainPage () {
                         </div>
                     </div>
                     <div className="choose-percent">
-                        <h4 className="section-title">Select Tip %</h4>
+                        <h2 className="section-title">Select Tip %</h2>
                         <div className="buttons">
                             {buttons.map((button: any) => (
                                 <button
@@ -84,7 +86,7 @@ export default function MainPage () {
                         </div>
                     </div>
                     <div className="number-of-people">
-                        <h4 className="section-title">Number of people</h4>
+                        <h2 className="section-title">Number of people</h2>
                         <div className="input-container">
                             <img src={iconPerson} className="icon-person" alt="Icon Person" />
                             <input
@@ -97,10 +99,10 @@ export default function MainPage () {
                     </div>
                 </div>
                 <div className="result-block">
-                    <div>
+                    <div className="result-numbers">
                         <div className="tip-amount">
                             <div className="text">
-                                <h4 className="result-block-title">Tip Amount</h4>
+                                <h2 className="result-block-title">Tip Amount</h2>
                                 <p className="for-person-sign">/ person</p>
                             </div>
                             <div className="sum">
@@ -109,7 +111,7 @@ export default function MainPage () {
                         </div>
                         <div className="total">
                             <div className="text">
-                                <h4 className="result-block-title">Total</h4>
+                                <h2 className="result-block-title">Total</h2>
                                 <p className="for-person-sign">/ person</p>
                             </div>
                             <div className="sum">
@@ -119,7 +121,7 @@ export default function MainPage () {
                     </div>
                     <ResetButton onClick={handleReset}>Reset</ResetButton>
                 </div>
-            </div>
+            </main>
         </div>
     )
 }
