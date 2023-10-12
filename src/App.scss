@@ -72,8 +72,6 @@
 
   .logo-header {
     margin: 3rem 0;
-    max-width: 96px;
-    max-height: 69px;
   }
 
   .content {
@@ -142,6 +140,7 @@
   .input-percent {
     min-width: 50px;
     text-align: right;
+    padding-right: 0.5rem;
   }
 
   .number-of-people {
@@ -212,6 +211,9 @@
   @media (min-width: 1440px) {
     .container {
         max-width: 895px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
     .content {
         display: flex;
@@ -239,8 +241,5 @@
     }
     .sum {
       font-size: 28px;
-    }
-    .input-percent {
-        padding-right: 0.5rem;
     }
   }
